@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="snakeWars.mapper.UserMapper">
+    
+    <resultMap id="userMap" type="snakeWars.domain.User">
+        <id column="id" property="id"/>
+        <result column="login_act" property="loginAct"/>
+        <result column="login_pwd" property="loginPwd"/>
+
+    </resultMap>
+    <select id="selectUserByLoginAct" parameterType="string" resultMap="userMap">
+        select id,login_act,login_pwd
+        from tbl_user
+        where login_act=#{loginAct}
+    </select>
+
+    <insert id="insertUser" parameterType="snakeWars.domain.User">
+        insert into tbl_user(login_act,login_pwd)
+        values(#{loginAct},#{loginPwd})
+    </insert>
+</mapper>
